@@ -6,15 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".FirstFragment">
 
+
     <TextView
-        android:id="@+id/textview_first"
+        android:id="@+id/textview_salary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_first_fragment"
+        android:text="@string/salery"
+        android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@id/button_first"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.07999998" />
+
+    <SeekBar
+        android:id="@+id/seekBarSalaryPerYearId"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:max="150000"
+        android:progress="24000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textview_salary"
+        app:layout_constraintVertical_bias="0.041" />
 
     <Button
         android:id="@+id/button_first"
@@ -24,5 +41,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_first" />
+        app:layout_constraintTop_toBottomOf="@id/seekBarSalaryPerYearId" />
 </androidx.constraintlayout.widget.ConstraintLayout>
