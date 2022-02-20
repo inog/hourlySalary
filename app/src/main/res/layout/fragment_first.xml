@@ -21,7 +21,7 @@
         app:layout_constraintVertical_bias="0.07999998" />
 
     <SeekBar
-        android:id="@+id/seekBarSalaryPerYearId"
+        android:id="@+id/seekbar_salary"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:max="150000"
@@ -31,7 +31,44 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textview_salary"
-        app:layout_constraintVertical_bias="0.041" />
+        app:layout_constraintVertical_bias="0" />
+
+    <TextView
+        android:id="@+id/textview_weekly_hours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="136dp"
+        android:text="@string/weekly_hours"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <SeekBar
+        android:id="@+id/seekbar_weekly_hours"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:max="60"
+        android:progress="37"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textview_weekly_hours"
+        app:layout_constraintVertical_bias="0.033" />
+
+    <TextView
+        android:id="@+id/textview_hourly_wage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="268dp"
+        android:text="@string/hourly_wage"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.543"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_first"
@@ -40,6 +77,8 @@
         android:text="@string/next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/seekBarSalaryPerYearId" />
+        app:layout_constraintTop_toBottomOf="@id/seekbar_weekly_hours"
+        app:layout_constraintVertical_bias="0.413" />
 </androidx.constraintlayout.widget.ConstraintLayout>

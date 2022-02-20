@@ -21,11 +21,17 @@ class FirstFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private var monthly: Int = 0
+    private var yearly: Int = 46000
+    private var weeklyHours: Double = 37.5
+    private var hourlyWage: Double = 0.0
+
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -34,25 +40,58 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val textViewSalary = view.findViewById<TextView>(R.id.textview_salary)
-        val seekBarSalary = view.findViewById<SeekBar>(R.id.seekBarSalaryPerYearId)
+        val seekBarSalary = view.findViewById<SeekBar>(R.id.seekbar_salary)
+        val textViewWeeklyHours = view.findViewById<TextView>(R.id.textview_weekly_hours)
+        val seekBarWeeklyHours = view.findViewById<SeekBar>(R.id.seekbar_weekly_hours)
+
         seekBarSalary.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar, value: Int, fromUser: Boolean) {
-//                var value = value / 100 * 100
-                textViewSalary.text = getString(R.string.salary, value.toString())
+                yearly = value
+//               salary = salary / 100 * 100 // 100 Steps
+
+                calc()
+                updateView(view)
             }
 
             override fun onStartTrackingTouch(p0: SeekBar) {}
             override fun onStopTrackingTouch(p0: SeekBar) {}
         })
 
+        seekBarWeeklyHours.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                weeklyHours = progress.toDouble();
+
+                calc()
+                updateView(view)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+
+        })
+
         binding.buttonFirst.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
-    }
 
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun calc() {
+        monthly = yearly / 12
+        hourlyWage = 3 * monthly / 13 / weeklyHours
+    }
+
+    fun updateView(view: View) {
+        view.findViewById<TextView>(R.id.textview_salary).text =
+            getString(R.string.salary, yearly.toString())
+        view.findViewById<TextView>(R.id.textview_weekly_hours).text =
+            getString(R.string.weekly_hours, weeklyHours.toString())
+        view.findViewById<TextView>(R.id.textview_hourly_wage).text =
+            getString(R.string.hourly_wage, hourlyWage.toString())
     }
 }
