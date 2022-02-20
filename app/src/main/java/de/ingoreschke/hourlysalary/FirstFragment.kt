@@ -25,11 +25,9 @@ class FirstFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
+    ): View {
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -37,7 +35,6 @@ class FirstFragment : Fragment() {
 
         val textViewSalary = view.findViewById<TextView>(R.id.textview_salary)
         val seekBarSalary = view.findViewById<SeekBar>(R.id.seekBarSalaryPerYearId)
-        textViewSalary.text = getString(R.string.salary, "24000")
         seekBarSalary.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar, value: Int, fromUser: Boolean) {
 //                var value = value / 100 * 100
