@@ -38,13 +38,14 @@ class FirstFragment : Fragment() {
         val textViewSalary = view.findViewById<TextView>(R.id.textview_salary)
         val seekBarSalary = view.findViewById<SeekBar>(R.id.seekBarSalaryPerYearId)
         textViewSalary.text = getString(R.string.salary, "24000")
-
         seekBarSalary.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(p0: SeekBar?, value: Int, p2: Boolean) {
+            override fun onProgressChanged(p0: SeekBar, value: Int, fromUser: Boolean) {
+//                var value = value / 100 * 100
                 textViewSalary.text = getString(R.string.salary, value.toString())
             }
-            override fun onStartTrackingTouch(p0: SeekBar?) {}
-            override fun onStopTrackingTouch(p0: SeekBar?) {}
+
+            override fun onStartTrackingTouch(p0: SeekBar) {}
+            override fun onStopTrackingTouch(p0: SeekBar) {}
         })
 
         binding.buttonFirst.setOnClickListener {
