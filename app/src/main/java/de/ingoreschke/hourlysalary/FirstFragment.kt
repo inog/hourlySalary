@@ -39,9 +39,7 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val textViewSalary = view.findViewById<TextView>(R.id.textview_salary)
         val seekBarSalary = view.findViewById<SeekBar>(R.id.seekbar_salary)
-        val textViewWeeklyHours = view.findViewById<TextView>(R.id.textview_weekly_hours)
         val seekBarWeeklyHours = view.findViewById<SeekBar>(R.id.seekbar_weekly_hours)
 
         seekBarSalary.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -59,7 +57,7 @@ class FirstFragment : Fragment() {
 
         seekBarWeeklyHours.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                weeklyHours = progress.toDouble();
+                weeklyHours = progress.toDouble()
 
                 calc()
                 updateView(view)
