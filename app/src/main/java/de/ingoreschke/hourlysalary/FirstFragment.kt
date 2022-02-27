@@ -85,11 +85,8 @@ class FirstFragment : Fragment() {
     }
 
     fun updateView(view: View) {
-        view.findViewById<TextView>(R.id.textview_salary).text =
-            getString(R.string.salary, yearly.toString())
-        view.findViewById<TextView>(R.id.textview_weekly_hours).text =
-            getString(R.string.weekly_hours, weeklyHours.toString())
-        view.findViewById<TextView>(R.id.textview_hourly_wage).text =
-            getString(R.string.hourly_wage, hourlyWage.toString())
+        view.findViewById<TextView>(R.id.textview_salary).text = getString(R.string.salary, yearly.toString())
+        view.findViewById<TextView>(R.id.textview_weekly_hours).text = getString(R.string.weekly_hours, weeklyHours.toString())
+        view.findViewById<TextView>(R.id.textview_hourly_wage).text = getString(R.string.hourly_wage, hourlyWage.toString())
     }
 }
