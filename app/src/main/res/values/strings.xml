@@ -12,4 +12,5 @@
     <string name="salary">Salary (yearly): %1$s</string>
     <string name="weekly_hours">Hours (weekly): %1$s</string>
     <string name="hourly_wage">Hourly wage : %1$s</string>
+    <string name="salary_monthly">Salary (monthly): %1$s</string>
 </resources>

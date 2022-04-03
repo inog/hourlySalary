@@ -40,25 +40,35 @@ class FirstFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val seekBarSalary = view.findViewById<SeekBar>(R.id.seekbar_salary)
+        val seekBarSalaryMonthly = view.findViewById<SeekBar>(R.id.seekbar_salary_monthly)
         val seekBarWeeklyHours = view.findViewById<SeekBar>(R.id.seekbar_weekly_hours)
 
         seekBarSalary.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar, value: Int, fromUser: Boolean) {
                 yearly = value
-//               salary = salary / 100 * 100 // 100 Steps
-
+                calcMonthly()
                 calc()
                 updateView(view)
             }
-
             override fun onStartTrackingTouch(p0: SeekBar) {}
             override fun onStopTrackingTouch(p0: SeekBar) {}
         })
 
+        seekBarSalaryMonthly.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                monthly = progress
+                calcYearly()
+                calc()
+                updateView(view)
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {}
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {}
+
+        })
         seekBarWeeklyHours.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 weeklyHours = progress.toDouble()
-
                 calc()
                 updateView(view)
             }
@@ -79,14 +89,25 @@ class FirstFragment : Fragment() {
         _binding = null
     }
 
-    fun calc() {
+    fun calcMonthly() {
         monthly = yearly / 12
+    }
+
+    fun calcYearly() {
+        yearly = monthly * 12
+    }
+
+    fun calc() {
         hourlyWage = 3 * monthly / 13 / weeklyHours
     }
 
+
     fun updateView(view: View) {
         view.findViewById<TextView>(R.id.textview_salary).text = getString(R.string.salary, yearly.toString())
+        view.findViewById<TextView>(R.id.textview_salary_monthly).text = getString(R.string.salary_monthly, monthly.toString())
         view.findViewById<TextView>(R.id.textview_weekly_hours).text = getString(R.string.weekly_hours, weeklyHours.toString())
         view.findViewById<TextView>(R.id.textview_hourly_wage).text = getString(R.string.hourly_wage, hourlyWage.toString())
+        view.findViewById<SeekBar>(R.id.seekbar_salary).progress = yearly
+        view.findViewById<SeekBar>(R.id.seekbar_salary_monthly).progress = monthly
     }
 }
