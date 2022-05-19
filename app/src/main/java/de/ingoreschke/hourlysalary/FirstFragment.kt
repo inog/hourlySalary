@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import de.ingoreschke.hourlysalary.databinding.FragmentFirstBinding
+import java.math.BigDecimal
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -24,7 +25,7 @@ class FirstFragment : Fragment() {
     private var monthly: Int = 0
     private var yearly: Int = 46000
     private var weeklyHours: Double = 37.5
-    private var hourlyWage: Double = 0.0
+    private var hourlyWage: BigDecimal = BigDecimal.ZERO;
 
 
     override fun onCreateView(
@@ -98,7 +99,8 @@ class FirstFragment : Fragment() {
     }
 
     fun calc() {
-        hourlyWage = 3 * monthly / 13 / weeklyHours
+        val bd = BigDecimal.valueOf(3 * monthly / 13 / weeklyHours);
+        hourlyWage = bd.setScale(2, BigDecimal.ROUND_HALF_UP)
     }
 
 
