@@ -9,6 +9,10 @@ Easy calculate a specific hourly wage. The goal is to get an overview how much y
 - [ ] compare different calculations  
   - [ ]fragment show salary when it receives a percentage increase
 
-#WIP
+### Todo for IncreaseSalaryFragment
+
+- [ ] rename SecondFragment to SalaryIncreaseFragment
+- [ ] input field for base salary
+- [ ] input field for percentage increase
 
 
