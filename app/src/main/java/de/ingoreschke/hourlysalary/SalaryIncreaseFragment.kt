@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import de.ingoreschke.hourlysalary.databinding.FragmentSecondBinding
@@ -31,6 +32,23 @@ class SalaryIncreaseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.seekBarSalaryIncrease.progress = 0
+        binding.seekBarSalaryIncrease.max = 100
+
+        binding.seekBarSalaryIncrease.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(p0: SeekBar, value: Int, fromUser: Boolean) {
+                val text = binding.editStartSalary.text
+                val startSalary = text.toString().toBigDecimal()
+                var result = startSalary.multiply(value.toBigDecimal()) / 100.toBigDecimal() + startSalary
+
+                binding.result.text = (result).toString()
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar) {}
+            override fun onStopTrackingTouch(p0: SeekBar) {}
+        }
+        )
+
 
         binding.buttonSecond.setOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
