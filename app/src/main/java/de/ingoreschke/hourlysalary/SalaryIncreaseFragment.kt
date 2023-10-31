@@ -40,14 +40,16 @@ class SalaryIncreaseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.seekBarSalaryIncrease.progress = 0
-        binding.seekBarSalaryIncrease.max = 100
+        binding.seekBarSalaryIncrease.max = 1000
 
         binding.seekBarSalaryIncrease.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar, value: Int, fromUser: Boolean) {
                 val text = binding.editStartSalary.text
                 val startSalary = text.toString()
-                var result = presenter.calculateSalaryIncrease(startSalary.toDouble(), value)
+                val value = value / 10.0
+                binding.percentValue.text = value.toString()
 
+                var result = presenter.calculateSalaryIncrease(startSalary.toDouble(), value)
                 binding.result.text = (result).toString()
             }
 
