@@ -8,6 +8,7 @@ import android.widget.SeekBar
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import de.ingoreschke.hourlysalary.databinding.FragmentSecondBinding
+import java.util.Locale
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -47,10 +48,10 @@ class SalaryIncreaseFragment : Fragment() {
                 val text = binding.editStartSalary.text
                 val startSalary = text.toString()
                 val value = value / 10.0
-                binding.percentValue.text = value.toString()
+                binding.percentValue.text = value.toString() + " %" // String.format(Locale.GERMAN, "%.2f", value)
 
                 var result = presenter.calculateSalaryIncrease(startSalary.toDouble(), value)
-                binding.result.text = (result).toString()
+                binding.result.text = String.format(Locale.GERMAN, "%.2f €", result)
             }
 
             override fun onStartTrackingTouch(p0: SeekBar) {}
