@@ -20,10 +20,17 @@ class SalaryIncreaseFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private lateinit var presenter: SalaryIncreasePresenter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        presenter = SalaryIncreasePresenter(SalaryIncreaseInteractor())
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
         return binding.root
@@ -38,16 +45,15 @@ class SalaryIncreaseFragment : Fragment() {
         binding.seekBarSalaryIncrease.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar, value: Int, fromUser: Boolean) {
                 val text = binding.editStartSalary.text
-                val startSalary = text.toString().toBigDecimal()
-                var result = startSalary.multiply(value.toBigDecimal()) / 100.toBigDecimal() + startSalary
+                val startSalary = text.toString()
+                var result = presenter.calculateSalaryIncrease(startSalary.toDouble(), value)
 
                 binding.result.text = (result).toString()
             }
 
             override fun onStartTrackingTouch(p0: SeekBar) {}
             override fun onStopTrackingTouch(p0: SeekBar) {}
-        }
-        )
+        })
 
 
         binding.buttonSecond.setOnClickListener {
