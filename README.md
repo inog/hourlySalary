@@ -19,5 +19,6 @@ Easy calculate a specific hourly wage. The goal is to get an overview how much y
 - [ ] make the SalaryIncreaseFragment as the first fragment
 - [ ] remove the briefcase icon from the toolbar
 - [ ] split the 2 Fragments into own app
-- 
+- [ ] migrate gradle from groovy to kotlin
+  - https://developer.android.com/build/migrate-to-kotlin-dsl
 
